@@ -17,8 +17,6 @@ ThisBuild / scalaVersion := "3.3.1"
 
 ThisBuild / javacOptions ++= Seq("-source", javaVersion, "-target", javaVersion)
 
-ThisBuild / javacOptions ++= Seq("-source", javaVersion, "-target", javaVersion)
-
 lazy val packageExecutable =
   taskKey[String]("Package an executable with Coursier")
 
