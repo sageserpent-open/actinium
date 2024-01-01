@@ -1,17 +1,20 @@
-import scala.sys.process.*
 import scala.language.postfixOps
 import sbtrelease.ReleaseStateTransformations.*
 import xerial.sbt.Sonatype.*
 import scala.xml.transform.{RuleTransformer, RewriteRule}
 import scala.xml.{Node, Elem}
+import scala.sys.process.*
 
 enablePlugins(ShadingPlugin)
+
 
 lazy val javaVersion = "14"
 
 ThisBuild / version := "0.1.0-SNAPSHOT"
 
-ThisBuild / scalaVersion := "3.3.0"
+ThisBuild / scalaVersion := "3.3.1"
+
+ThisBuild / javacOptions ++= Seq("-source", javaVersion, "-target", javaVersion)
 
 ThisBuild / javacOptions ++= Seq("-source", javaVersion, "-target", javaVersion)
 
