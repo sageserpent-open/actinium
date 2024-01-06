@@ -106,6 +106,7 @@ lazy val root = (project in file("."))
     libraryDependencies += "com.google.guava" % "guava"      % "32.1.2-jre",
     libraryDependencies += "de.sciss"        %% "fingertree" % "1.5.5",
     libraryDependencies += "com.sageserpent" %% "americium"  % "1.18.1",
+    libraryDependencies += "com.sageserpent" %% "americium"  % "1.18.3",
     libraryDependencies += "com.github.ben-manes.caffeine" % "caffeine" % "3.1.8",
     libraryDependencies += "com.lihaoyi" %% "pprint" % "0.8.1" % Test,
     libraryDependencies += "com.eed3si9n.expecty" %% "expecty" % "0.16.0" % Test,
