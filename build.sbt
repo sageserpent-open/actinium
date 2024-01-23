@@ -1,6 +1,5 @@
 import scala.language.postfixOps
 
-
 lazy val javaVersion = "14"
 
 ThisBuild / version := "0.1.0-SNAPSHOT"
@@ -14,11 +13,11 @@ lazy val root = (project in file("."))
     licenses += ("MIT", url("https://opensource.org/licenses/MIT")),
     organization     := "com.sageserpent",
     organizationName := "sageserpent",
-    description := "A minimal genetic algorithm framework.",
+    description      := "A minimal genetic algorithm framework.",
     scalacOptions ++= List("-source:future"),
-    name := "actinium",
-    libraryDependencies += "com.sageserpent" %% "americium"  % "1.18.3",
-    libraryDependencies += "com.lihaoyi" %% "pprint" % "0.8.1" % Test,
+    name                                     := "actinium",
+    libraryDependencies += "com.sageserpent" %% "americium" % "1.18.3",
+    libraryDependencies += "com.lihaoyi"     %% "pprint"    % "0.8.1" % Test,
     libraryDependencies += "com.eed3si9n.expecty" %% "expecty" % "0.16.0" % Test,
     libraryDependencies += "net.aichler" % "jupiter-interface" % JupiterKeys.jupiterVersion.value % Test,
     Test / fork               := true,
