@@ -31,11 +31,11 @@ object EvolutionTest:
   given Order[Phenotype] =
     Order.by(numberOfCorrectlyOrderedAdjacentElements)
 
-  def numberOfCorrectlyOrderedAdjacentElements(phenotype: Phenotype) =
+  private def numberOfCorrectlyOrderedAdjacentElements(phenotype: Phenotype) =
     phenotype.zip(phenotype.tail).count(_ <= _)
   end numberOfCorrectlyOrderedAdjacentElements
 
-  def evolution(startingPhenotype: Phenotype) =
+  private def evolution(startingPhenotype: Phenotype) =
     require(1 < startingPhenotype.size)
 
     trait EvolutionImplementation extends Evolution[Chromosome, Phenotype]:
@@ -73,7 +73,7 @@ object EvolutionTest:
         random.pickAlternatelyFrom(Iterable(first, second)).distinct.toVector
 
       override def initialChromosome: Chromosome =
-        (0 until startingPhenotype.size).toVector
+        startingPhenotype.indices.toVector
 
       override def phenotype(chromosome: Chromosome): Phenotype =
         chromosome.map(startingPhenotype.apply)
@@ -95,7 +95,7 @@ object EvolutionTest:
 
     abstract override def mutate(chromosome: Chromosome)(using
         random: Random
-    ) =
+    ): Chromosome =
       val result = super.mutate(chromosome)
       // Self-check of the test support logic...
       assume(result.isWellFormed)
@@ -106,7 +106,7 @@ object EvolutionTest:
 
     abstract override def breed(first: Chromosome, second: Chromosome)(using
         random: Random
-    ) =
+    ): Chromosome =
       val result = super.breed(first, second)
       // Self-check of the test support logic...
       assume(result.isWellFormed)
