@@ -1,6 +1,7 @@
 package com.sageserpent.actinium
 
 import cats.Order
+import com.typesafe.scalalogging.StrictLogging
 
 import scala.annotation.tailrec
 import scala.concurrent.duration.{Deadline, FiniteDuration}
@@ -15,8 +16,7 @@ trait Evolution[Chromosome, Phenotype]:
   def phenotype(chromosome: Chromosome): Phenotype
 end Evolution
 
-object Evolution:
-
+object Evolution extends StrictLogging:
   def of[Chromosome, Phenotype](
       maximumNumberOfRetries: Int,
       maximumPopulationSize: Int,
@@ -102,10 +102,14 @@ object Evolution:
       val outOfTime = deadline.fold(ifEmpty = false)(_.isOverdue())
 
       if noImprovement && (outOfTime || maximumNumberOfRetries == numberOfRetries)
-      then fittestChromosome
+      then
+        logger.info(
+          s"FINISHED, fittest: $fittestOffspringChromosome, phenotype: ${evolution.phenotype(fittestOffspringChromosome)}"
+        )
+        fittestChromosome
       else
         if noImprovement then
-          println("**** RETRYING...")
+          logger.info(s"RETRYING, this is retry #${1 + numberOfRetries}...")
           lifecycle(
             populationChromosomes = offspringChromosomes,
             fittestChromosome, // The previous record holder still stands.
@@ -114,8 +118,8 @@ object Evolution:
             deadline = deadline
           )
         else
-          println(
-            s"**** PROGRESSING, fittest: $fittestOffspringChromosome, phenotype: ${evolution
+          logger.info(
+            s"PROGRESSING, fittest: $fittestOffspringChromosome, phenotype: ${evolution
                 .phenotype(fittestOffspringChromosome)}"
           )
 
