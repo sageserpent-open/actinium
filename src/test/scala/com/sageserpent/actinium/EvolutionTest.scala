@@ -1,12 +1,12 @@
-package com.sageserpent.kineticmerge.core.genetic
+package com.sageserpent.actinium
 
 import cats.kernel.Order
 import com.sageserpent.americium.Trials
 import com.sageserpent.americium.Trials.api as trialsApi
 import com.sageserpent.americium.junit5.*
 import com.sageserpent.americium.randomEnrichment.*
-import com.sageserpent.kineticmerge.core.ExpectyFlavouredAssert.assert
-import com.sageserpent.kineticmerge.core.genetic.EvolutionTest.{*, given}
+import com.sageserpent.actinium.ExpectyFlavouredAssert.assert
+import EvolutionTest.{*, given}
 import org.junit.jupiter.api.TestFactory
 
 import scala.collection.immutable.TreeSet

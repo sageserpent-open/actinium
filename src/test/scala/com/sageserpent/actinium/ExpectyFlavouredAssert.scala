@@ -1,4 +1,4 @@
-package com.sageserpent.kineticmerge.core
+package com.sageserpent.actinium
 
 import com.eed3si9n.expecty.Expecty
 

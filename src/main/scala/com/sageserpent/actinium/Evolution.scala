@@ -1,4 +1,4 @@
-package com.sageserpent.kineticmerge.core.genetic
+package com.sageserpent.actinium
 
 import cats.Order
 
